@@ -2,3 +2,4 @@ obj
 bin
 appsetings.json
 *.db
+*.rdb
