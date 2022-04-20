@@ -15,7 +15,7 @@ namespace Infrastructure.Services
             _basketRepo = basketRepo;
         }
 
-        public async Task<Order> CreateOrderAsync(string buyerEmail, int deliveryMethodId, string basketId, Address shippingAddress)
+        public async Task<Order> CreateOrderAsync(string buyerEmail, int deliveryMethodId, string basketId, OrderAddress shippingAddress)
         {
             // throw new NotImplementedException();
             // get basket from the repo

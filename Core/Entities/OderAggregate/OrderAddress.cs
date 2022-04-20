@@ -1,12 +1,12 @@
 namespace Core.Entities.OderAggregate
 {
-    public class Address
+    public class OrderAddress
     {
-        public Address()
+        public OrderAddress()
         {
         }
 
-        public Address(string firstName, string lastName, string street, string city, string state, string zipCode)
+        public OrderAddress(string firstName, string lastName, string street, string city, string state, string zipCode)
         {
             FirstName = firstName;
             LastName = lastName;

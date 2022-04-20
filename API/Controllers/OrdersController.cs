@@ -1,4 +1,3 @@
-using System.Security.Claims;
 using API.Dtos;
 using API.Errors;
 using API.Extensions;
@@ -24,7 +23,7 @@ namespace API.Controllers
         public async Task<ActionResult<Order>> CreateOrder(OrderDto orderDto)
         {
             var email = HttpContext.User.RetrieveEmailFromPrincipal();
-            var address = _mapper.Map<AddressDto, Address>(orderDto.ShipToAddress);
+            var address = _mapper.Map<AddressDto, OrderAddress>(orderDto.ShipToAddress);
             var order = await _orderService.CreateOrderAsync(email, orderDto.DeliveryMethodId, orderDto.BasketId, address);
             if (order == null) return BadRequest(new ApiResponse(400, "Problem creating order"));
             return Ok(order);
@@ -40,10 +39,10 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<OrderToReturnDto>> GetOrderByIdForUser(int id)
         {
-            var email = HttpContext.User.RetrieveEmailFromPrincipal();
+            var email = User.RetrieveEmailFromPrincipal();
             var order = await _orderService.GetOrderByIdAsync(id, email);
             if (order == null) return NotFound(new ApiResponse(404, "Problem"));
-            return _mapper.Map<Order, OrderToReturnDto>(order);
+            return _mapper.Map<OrderToReturnDto>(order);
         }
         [HttpGet("deliveryMethods")]
         public async Task<ActionResult<IReadOnlyList<DeliveryMethod>>> GetDeliveryMethod()

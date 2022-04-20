@@ -6,7 +6,7 @@ namespace Core.Entities.OderAggregate
         {
         }
 
-        public Order( IReadOnlyList<OrderItem> orderItems, string buyerEmail,  Address shipToAddress, DeliveryMethod deliveryMethod, decimal subtotal)
+        public Order( IReadOnlyList<OrderItem> orderItems, string buyerEmail,  OrderAddress shipToAddress, DeliveryMethod deliveryMethod, decimal subtotal)
         {
             BuyerEmail = buyerEmail;
             ShipToAddress = shipToAddress;
@@ -17,7 +17,7 @@ namespace Core.Entities.OderAggregate
 
         public string BuyerEmail { get; set; }
         public DateTimeOffset OrderDate { get; set; } = DateTimeOffset.Now;
-        public Address ShipToAddress { get; set; }
+        public OrderAddress ShipToAddress { get; set; }
         public DeliveryMethod DeliveryMethod { get; set; }
         public IReadOnlyList<OrderItem> OrderItems { get; set; }
         public decimal Subtotal { get; set; }
